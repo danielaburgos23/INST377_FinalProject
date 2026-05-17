@@ -2,146 +2,101 @@
 
 ## Project Description
 
-Recovery Tracker Dashboard is a full stack web application designed for student athletes to monitor and visualize recovery patterns over time. The system allows users to submit daily recovery logs including sleep, soreness, stress, hydration, energy levels, and personal notes. The application stores data in a Supabase cloud database and visualizes recovery trends using interactive charts.
+Recovery Tracker Dashboard is a full stack web application designed for student athletes to monitor and visualize recovery patterns over time. The system allows users to submit daily recovery logs including sleep, soreness, stress, hydration, energy levels, and personal notes.
 
-The project was developed as part of the INST377 Final Project and demonstrates full stack web development concepts including React frontend development, Express backend APIs, database integration, external API usage, and cloud deployment.
-
-Core features include:
-- Recovery log submission form
-- Dynamic recovery dashboard visualizations
-- Sleep, stress, and energy tracking
-- Supabase cloud database integration
-- Email validation using the Mailboxlayer API
-- Responsive athlete focused interface
-- REST API backend architecture
+The application stores data in a Supabase cloud database and visualizes recovery trends using interactive charts. The project also includes email validation functionality and backend API integration through an Express.js server.
 
 ---
 
 ## Target Browsers
 
-The application is designed primarily for modern desktop and mobile browsers.
+This application is optimized for contemporary desktop browsers including:
 
-### Desktop Browsers
 - Google Chrome
 - Safari
 - Microsoft Edge
 - Mozilla Firefox
 
-### Mobile Browsers
-- Safari on iOS
-- Chrome on Android
-
-The application was mainly tested using:
-- Google Chrome on macOS
-- Safari on macOS
+The application was primarily developed and tested on macOS using Chrome and Safari.
 
 ---
 
-## Live Deployment
+## Live Application
 
-Frontend deployed using Vercel:
+Vercel Deployment Link:
 
 https://inst-377-final-project-henna.vercel.app
 
----
+GitHub Repository:
 
-## GitHub Repository
-
-GitHub Repository Link:
-
-https://github.com/danielaburgos23/INST377_FinalProject
+https://github.com/danielaburgos23/INST377_FinalProject/tree/main/recovery-dashboard
 
 ---
 
 ## Developer Manual
 
-See Developer Manual below.
+[View the Developer Manual](./docs/README.md)
 
 ---
 
 # Developer Manual
 
-## Introduction
+## Overview
 
-This document is intended for future developers who may continue development of the Recovery Tracker Dashboard project.
+The Recovery Tracker Dashboard is a full stack application using:
 
-The application follows a full stack architecture using:
 - React + Vite frontend
-- Express.js backend
-- Supabase PostgreSQL database
-- Recharts for data visualization
-- Mailboxlayer external API for email validation
+- Express.js backend server
+- Supabase cloud database
+- Chart.js for data visualization
+- MailboxLayer API for email validation
+- Vercel deployment
+
+The application allows users to:
+- Submit recovery logs
+- Store recovery data in Supabase
+- Visualize trends using charts
+- Validate emails for future weekly summaries
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```bash
 recovery-dashboard/
 │
 ├── client/                  # Frontend React application
-│   ├── node_modules/
 │   ├── src/
-│   │   ├── assets/          # Static assets
-│   │   │   ├── hero.png
-│   │   │   ├── react.svg
-│   │   │   └── vite.svg
-│   │   ├── components/      # React components
+│   │   ├── assets/
+│   │   ├── components/
 │   │   │   ├── DashboardCharts.jsx
 │   │   │   ├── EmailValidation.jsx
 │   │   │   ├── Navbar.jsx
 │   │   │   └── RecoveryForm.jsx
-│   │   ├── pages/           # Page components
-│   │   │   ├── About.jsx
-│   │   │   ├── Help.jsx
-│   │   │   └── Home.jsx
+│   │   ├── pages/
 │   │   ├── App.jsx
 │   │   ├── App.css
 │   │   ├── index.css
 │   │   └── main.jsx
 │   │
 │   ├── public/
-│   ├── eslint.config.js
-│   ├── index.html
-│   ├── package-lock.json
 │   ├── package.json
 │   ├── vite.config.js
 │   └── README.md
-│
-├── docs/
-│   └── README.md            # Main project documentation
 │
 ├── server/                  # Backend Express server
 │   ├── node_modules/
 │   ├── .env
 │   ├── package.json
 │   ├── package-lock.json
-│   └── server.js
+│   ├── server.js
+│   └── README.md
 │
-└──
+├── docs/
+│   └── README.md
+│
+└── README.md
 ```
-
-# Technologies Used
-
-## Frontend
-- React
-- Vite
-- Axios
-- Recharts
-- CSS
-
-## Backend
-- Node.js
-- Express.js
-- CORS
-- dotenv
-- Axios
-
-## Database
-- Supabase PostgreSQL
-
-## Deployment
-- Vercel
 
 ---
 
@@ -157,95 +112,63 @@ git clone https://github.com/danielaburgos23/INST377_FinalProject.git
 
 ## 2. Install Frontend Dependencies
 
-Navigate into the client folder:
-
 ```bash
 cd recovery-dashboard/client
 npm install
 ```
 
-Dependencies include:
-- React
-- Axios
-- Recharts
-- React Router DOM
-
 ---
 
 ## 3. Install Backend Dependencies
-
-Navigate into the server folder:
 
 ```bash
 cd ../server
 npm install
 ```
 
-Dependencies include:
-- Express
-- CORS
-- dotenv
-- Axios
-- Supabase client
-- Nodemon
-
 ---
 
-# Environment Variables
+## 4. Create Environment Variables
 
-Create a `.env` file inside the server folder.
-
-Required variables:
+Inside the `server` folder, create a `.env` file with:
 
 ```env
-SUPABASE_URL=your_supabase_project_url
-SUPABASE_ANON_KEY=your_supabase_anon_key
-MAILBOXLAYER_KEY=your_mailboxlayer_api_key
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+MAILBOXLAYER_API_KEY=your_api_key
 ```
 
 ---
 
 # Running the Application
 
-## Run Backend Server
+## Start Backend Server
 
-Inside:
-
-```bash
-cd recovery-dashboard/server
-```
-
-Run:
+Inside `/server`:
 
 ```bash
 npm run dev
 ```
 
-Expected output:
+Server runs on:
 
-```text
-Server running on port 3000
+```bash
+http://localhost:3000
 ```
 
 ---
 
-## Run Frontend Client
+## Start Frontend
 
-Inside:
-
-```bash
-cd recovery-dashboard/client
-```
-
-Run:
+Inside `/client`:
 
 ```bash
 npm run dev
 ```
 
-Expected local URL:
+Frontend runs on:
 
-```text
+```bash
 http://localhost:5173
 ```
 
@@ -255,49 +178,31 @@ http://localhost:5173
 
 ## GET `/recovery-logs`
 
-Returns all recovery logs from the database.
+Retrieves all recovery log entries from Supabase.
 
-### Example
+Example:
 
-```http
-GET /recovery-logs
-```
-
-### Response
-
-```json
-[
-  {
-    "date": "2026-05-12",
-    "sleep_hours": 8,
-    "stress_level": 4
-  }
-]
+```bash
+http://localhost:3000/recovery-logs
 ```
 
 ---
 
 ## POST `/recovery-logs`
 
-Creates a new recovery log entry.
+Creates a new recovery log entry in Supabase.
 
-### Example
-
-```http
-POST /recovery-logs
-```
-
-### Request Body
+Example Request Body:
 
 ```json
 {
-  "date": "2026-05-12",
+  "date": "2026-05-17",
   "sleep_hours": 8,
-  "soreness_level": 1,
-  "stress_level": 4,
-  "energy_level": 3,
-  "hydration_level": 3,
-  "notes": "Practice and study hours."
+  "soreness_level": 2,
+  "stress_level": 3,
+  "energy_level": 4,
+  "hydration_level": 5,
+  "notes": "Light practice and recovery session."
 }
 ```
 
@@ -305,106 +210,61 @@ POST /recovery-logs
 
 ## GET `/validate-email`
 
-Validates email addresses using the Mailboxlayer API.
+Validates emails using the MailboxLayer API.
 
-### Example
+Example:
 
-```http
-GET /validate-email?email=test@gmail.com
-```
-
-### Response
-
-```json
-{
-  "valid": true
-}
+```bash
+http://localhost:3000/validate-email?email=test@gmail.com
 ```
 
 ---
 
-# Database Information
+# Frontend Libraries Used
 
-The project uses a Supabase PostgreSQL database.
+The project uses the following frontend JavaScript libraries:
 
-Primary table:
-- `recovery_logs`
-
-Columns include:
-- date
-- sleep_hours
-- soreness_level
-- stress_level
-- energy_level
-- hydration_level
-- notes
+1. Chart.js
+2. React Chartjs 2
 
 ---
 
 # Testing
 
-At the current stage, testing was performed manually through:
-- frontend form submissions
-- API endpoint browser testing
-- Supabase table verification
-- email validation testing
+No formal automated testing framework was implemented for this project.
 
-Future development should include:
-- Jest unit testing
-- API integration tests
-- frontend component testing
+Testing was completed manually through:
+- Frontend form submissions
+- API endpoint testing
+- Supabase database verification
+- Email validation testing
+- Vercel deployment testing
 
 ---
 
-# Known Bugs
+# Known Issues
 
-## Current Known Issues
-
-- Deployed frontend still references local backend routes
-- Backend server is currently intended for local execution
-- Some charts may not refresh automatically without page reload
-- Limited form validation beyond required fields
+- The deployed Vercel frontend may require the backend server to be running locally for full API functionality.
+- Email validation depends on external API availability.
+- Mobile responsiveness could be improved further for smaller devices.
 
 ---
 
 # Future Development Roadmap
 
-## Planned Improvements
+Potential future improvements include:
 
-### Backend Deployment
-Deploy Express backend using:
-- Railway
-- Render
-- or Vercel serverless functions
-
-### Authentication
-Add athlete login accounts using Supabase Authentication.
-
-### Dashboard Improvements
-- real time chart updates
-- filtering by date ranges
-- athlete comparison views
-
-### Coach Features
-- team dashboards
-- athlete monitoring
-- performance alerts
-
-### Mobile Optimization
-Improve responsive behavior for smaller devices.
-
-### Notifications
-Add automated weekly recovery summary emails.
+- User authentication system
+- Athlete account management
+- Coach dashboards
+- Weekly email summary automation
+- Improved mobile responsiveness
+- Advanced analytics and trend predictions
+- Recovery scoring system
+- Calendar integrations
 
 ---
 
-# Additional Notes
+# Contributors
 
-This project was developed for educational purposes as part of INST377 at the University of Maryland.
-
-The project demonstrates:
-- frontend development
-- backend API design
-- cloud database integration
-- deployment workflows
-- full stack application architecture
+- Daniela Burgos Ortega
