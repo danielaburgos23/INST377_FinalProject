@@ -1,23 +1,43 @@
+import { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
   Tooltip,
+  CartesianGrid,
+  BarChart,
+  Bar,
   ResponsiveContainer,
 } from "recharts";
-
-const sampleData = [
-  { date: "Mon", sleep: 7, energy: 4, stress: 2 },
-  { date: "Tue", sleep: 6, energy: 3, stress: 4 },
-  { date: "Wed", sleep: 8, energy: 5, stress: 2 },
-  { date: "Thu", sleep: 5.5, energy: 2, stress: 5 },
-  { date: "Fri", sleep: 7.5, energy: 4, stress: 3 },
-];
+import axios from "axios";
 
 function DashboardCharts() {
+  const [logs, setLogs] = useState([]);
+
+  useEffect(() => {
+    fetchLogs();
+  }, []);
+
+  async function fetchLogs() {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/recovery-logs"
+      );
+
+      setLogs(response.data);
+    } catch (error) {
+      console.error("Error fetching recovery logs:", error);
+    }
+  }
+
+  const chartData = logs.map((log) => ({
+    date: log.date,
+    sleep: Number(log.sleep_hours),
+    stress: Number(log.stress_level),
+    energy: Number(log.energy_level),
+  }));
+
   return (
     <section className="card">
       <h2>Your Recovery Dashboard</h2>
@@ -25,44 +45,50 @@ function DashboardCharts() {
         Visualize patterns between sleep, energy, and stress over time.
       </p>
 
-      <div className="summary-grid">
-        <div className="summary-card">
-          <h3>6.8 hrs</h3>
-          <p>Average Sleep</p>
-        </div>
-
-        <div className="summary-card">
-          <h3>5 / 5</h3>
-          <p>Highest Stress</p>
-        </div>
-
-        <div className="summary-card">
-          <h3>2 / 5</h3>
-          <p>Lowest Energy</p>
-        </div>
-      </div>
-
-      <div className="chart-box">
+      <div style={{ width: "100%", height: 350, marginTop: "2rem" }}>
         <h3>Sleep vs Energy</h3>
-        <ResponsiveContainer width="100%" height={250}>
-          <LineChart data={sampleData}>
+
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" />
+
             <XAxis dataKey="date" />
+
             <YAxis />
+
             <Tooltip />
-            <Line type="monotone" dataKey="sleep" stroke="#ffb703" strokeWidth={3} />
-            <Line type="monotone" dataKey="energy" stroke="#fb8500" strokeWidth={3} />
+
+            <Line
+              type="monotone"
+              dataKey="sleep"
+              stroke="#facc15"
+              strokeWidth={3}
+            />
+
+            <Line
+              type="monotone"
+              dataKey="energy"
+              stroke="#f97316"
+              strokeWidth={3}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
 
-      <div className="chart-box">
-        <h3>Stress Level</h3>
-        <ResponsiveContainer width="100%" height={250}>
-          <BarChart data={sampleData}>
+      <div style={{ width: "100%", height: 350, marginTop: "3rem" }}>
+        <h3>Stress Levels</h3>
+
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" />
+
             <XAxis dataKey="date" />
+
             <YAxis />
+
             <Tooltip />
-            <Bar dataKey="stress" fill="#ff4d00" />
+
+            <Bar dataKey="stress" fill="#f97316" />
           </BarChart>
         </ResponsiveContainer>
       </div>
